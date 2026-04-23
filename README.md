@@ -1,98 +1,127 @@
-# Invoice Management App
+# Invoice App — HNG Stage 2
 
-A professional, full-featured invoice management application built with React 19, Vite, and Tailwind CSS 4. This application allows users to create, view, edit, and manage invoices with a focus on premium UI/UX and accessibility.
-
-## 🚀 Getting Started
-
-### Prerequisites
-- Node.js (v18 or higher recommended)
-- npm or yarn
-
-### Installation
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/BenedictUmeozor/hng14-stage2-task
-   cd hng14-stage2-task
-   ```
-
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-
-3. Start the development server:
-   ```bash
-   npm run dev
-   ```
-
-4. Build for production:
-   ```bash
-   npm run build
-   ```
+A simple invoice management app for creating, tracking, and managing invoice payments.
 
 ---
 
-## 🏗️ Architecture
+## Setup Instructions
 
-The project follows a modular and scalable architecture:
+Clone the repository and install dependencies:
 
-### 1. State Management
-- **React Context API**: Used for global invoice state and filtering logic (`InvoiceProvider`).
-- **Custom Hooks**: Business logic is encapsulated in hooks like `useInvoices`, which handles CRUD operations and data persistence.
+```bash
+npm install
+```
 
-### 2. Form Handling & Validation
-- **React Hook Form**: Manages complex form states for creating and editing invoices.
-- **Zod**: Provides schema-based validation, ensuring data integrity and providing clear error messages to users.
+Start the development server:
 
-### 3. Styling & Design System
-- **Tailwind CSS 4**: Utilizes the latest Tailwind features including CSS-variable-based themes and custom utilities.
-- **Design Tokens**: Centralized theme configuration in `index.css` for consistent colors, typography (League Spartan), and spacing.
-- **Dark Mode**: Native support for dark/light themes with a custom toggle component.
+```bash
+npm run dev
+```
 
-### 4. Layout & Routing
-- **React Router 7**: Handles client-side navigation with scroll restoration and nested layouts.
-- **App Shell**: A persistent `Sidebar` component that adjusts its position (top for mobile/tablet, left for desktop) to optimize screen real estate.
+Open in your browser:
+http://localhost:3000
 
-### 5. Responsive Design
-- **Conditional Rendering**: Uses `react-responsive` hooks for complex layout shifts that CSS alone cannot handle efficiently.
-- **Adaptive Layouts**: The application dynamically switches between grid and flex layouts based on screen size (Mobile < 768px, Tablet < 1024px, Desktop >= 1024px).
+Other commands:
 
-### 6. Components
-- **Radix UI**: Leverages accessible primitives (like `Select`) for complex UI interactions.
-- **Reusable UI Components**: Custom-built `Button`, `Input`, `DatePicker`, and `Modal` components designed for high reusability.
+```bash
+npm run build   # production build
+npm run start   # run production build
+npm run lint    # check code quality
+```
 
 ---
 
-## ⚖️ Trade-offs
+## Architecture
 
-During development, several architectural decisions were made:
+The app follows a simple client-side structure.
 
-- **LocalStorage vs. Backend**: For the current scope, LocalStorage was chosen for persistence. 
-  - *Pro*: Immediate "offline-first" experience and no backend setup required for reviewers.
-  - *Con*: Data is limited to a single browser and storage capacity.
-- **React Context vs. Redux/Zustand**: Given the application's size, React Context provides sufficient state management without the boilerplate of larger libraries.
-- **Tailwind CSS 4**: Chose the latest version to leverage modern CSS features, though it requires a compatible environment (Vite/PostCSS).
+```
+src/
+├─ app/                 # pages and routing
+├─ components/          # reusable UI components
+├─ lib/
+│  ├─ store.ts          # global state (invoices)
+│  ├─ invoices.ts       # mock data and helpers
+│  ├─ invoice-schema.ts # form validation rules
+│  └─ utils.ts          # helper functions
+```
+
+### State Management
+
+- All invoice data lives in a single global store  
+- Data persists in the browser using localStorage  
+
+Available actions:
+- Add invoice  
+- Update invoice  
+- Delete invoice  
+- Mark invoice as paid  
+
+### Data Flow
+
+- Form → validation → store update  
+- Store update → UI re-renders  
+- Changes persist automatically  
+
+### Routing
+
+- `/` → list of invoices  
+- `/invoices/[id]` → invoice details and actions  
 
 ---
 
-## ♿ Accessibility
+## Trade-offs
 
-Accessibility was a core focus of the development process:
+- No backend  
+  - Faster to build  
+  - Not suitable for real-world usage  
 
-- **Semantic HTML**: Proper use of `<main>`, `<section>`, `<nav>`, and heading hierarchies.
-- **ARIA Attributes**: Integrated ARIA labels and roles, especially in custom interactive elements.
-- **Keyboard Navigation**: Full support for keyboard users, including focus trapping in modals and tab navigation.
-- **Radix UI Primitives**: Complex components like Select menus use Radix UI to ensure they meet WAI-ARIA standards.
-- **Screen Reader Support**: Included `.sr-only` utility classes to provide context to assistive technologies without affecting the visual design.
-- **Contrast & Visibility**: Color palettes were chosen to ensure high contrast in both light and dark modes.
+- Client-side state only  
+  - Simple structure  
+  - No multi-device support  
+
+- LocalStorage persistence  
+  - Data survives refresh  
+  - No external backup  
+
+- Client-rendered pages  
+  - Easier state handling  
+  - Reduced server-side performance benefits  
 
 ---
 
-## 🛠️ Tech Stack
-- **Framework**: [React 19](https://react.dev/)
-- **Bundler**: [Vite](https://vitejs.dev/)
-- **Routing**: [React Router 7](https://reactrouter.com/)
-- **Styling**: [Tailwind CSS 4](https://tailwindcss.com/)
-- **Validation**: [Zod](https://zod.dev/)
-- **Forms**: [React Hook Form](https://react-hook-form.com/)
-- **Icons**: Custom SVG icons
+## Accessibility Notes
+
+- All inputs are paired with labels  
+- Validation errors are clearly displayed  
+- Inputs use `aria-invalid` for error states  
+- Buttons include descriptive labels where needed  
+- Keyboard navigation works across forms and dialogs  
+- Status is shown with both color and text  
+- Theme preference persists for user comfort  
+
+Known issue:
+- Some light mode text contrast is slightly below WCAG recommendations  
+
+---
+
+## Improvements Beyond Requirements
+
+- Add backend for persistent data storage  
+- Add authentication for user-specific data  
+- Sync filters with URL for shareable views  
+- Improve UI animations for better feedback  
+- Expand validation for draft handling  
+- Add export feature (PDF or download)  
+
+---
+
+## Summary
+
+This project focuses on:
+
+- Clean UI  
+- Simple state management  
+- Core CRUD functionality  
+
+Built as a frontend-focused solution for learning and demonstration.
