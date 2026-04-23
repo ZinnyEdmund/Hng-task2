@@ -1,0 +1,91 @@
+@import "tailwindcss";
+
+/* Custom variant for class-based dark mode */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Theme colors and fonts based on design system */
+@theme {
+  /* Primary colors */
+  --color-primary-light: #7c5dfa;
+  --color-primary: #9277ff;
+  --color-primary-dark: #1e2139;
+  --color-primary-darker: #252945;
+
+  /* Neutral colors */
+  --color-neutral-lightest: #dfe3fa;
+  --color-neutral-light: #888eb0;
+  --color-neutral: #7e88c3;
+  --color-neutral-dark: #0c0e16;
+
+  /* Accent colors */
+  --color-accent-red: #ec5757;
+  --color-accent-pink: #ff8f8f;
+  --color-accent-bg: #f8f8fb;
+
+  /* Dark mode specific */
+  --color-dark-bg: #141625;
+  --color-dark-card: #1e2139;
+
+  --color-sidebar: #373b53;
+
+  /* Font families */
+  --font-sans: "League Spartan", system-ui, -apple-system, sans-serif;
+
+  --color-01: #7c5dfa;
+  --color-02: #9277ff;
+  --color-03: #1e2139;
+  --color-04: #252945;
+  --color-05: #dfe3fa;
+  --color-06: #888eb0;
+  --color-07: #7e88c3;
+  --color-08: #0c0e16;
+  --color-09: #ec5757;
+  --color-10: #ff9797;
+  --color-11: #f8f8fb;
+  --color-12: #141625;
+}
+
+@utility heading-l {
+  @apply text-[36px] leading-[33px] font-bold tracking-[-1px] max-md:text-[24px] max-md:leading-[100%] max-md:tracking-[-0.75px];
+}
+
+@utility heading-m {
+  @apply text-[24px] leading-[22px] font-bold tracking-[-0.75px];
+}
+
+@utility heading-s {
+  @apply text-[15px] leading-[24px] font-bold tracking-[-0.25px];
+}
+
+@utility heading-s-variant {
+  @apply text-[15px] leading-[15px] font-bold tracking-[-0.25px];
+}
+
+@utility body {
+  @apply text-[13px] leading-[18px] font-medium tracking-[-0.1px];
+}
+
+@utility body-variant {
+  @apply text-[13px] leading-[15px] font-medium tracking-[-0.25px];
+}
+
+@utility text-highlight {
+  @apply text-neutral-light dark:text-[#DFE3FA];
+}
+
+button {
+  cursor: pointer;
+}
+
+/* Screen reader only utility class for accessibility */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
