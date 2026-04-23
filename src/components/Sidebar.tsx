@@ -1,5 +1,5 @@
 import MoonIcon from "@/assets/icons/MoonIcon";
-import SunIcon from "@/assets/icons/SunIcon";
+import { Sun } from 'lucide-react';
 import avatar from "@/assets/images/avatar.png";
 import { useDarkMode } from "@/hooks/useDarkMode";
 import AppLogo from "./AppLogo";
@@ -17,7 +17,7 @@ const Sidebar = () => {
             aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
             className="transition-opacity duration-150 ease-linear hover:opacity-50"
           >
-            {isDark ? <SunIcon /> : <MoonIcon />}
+            {isDark ? <Sun /> : <MoonIcon />}
           </button>
         </div>
         <div className="flex items-center justify-center border-[#494E6E] max-lg:h-full max-lg:border-l max-lg:px-6 lg:border-t lg:py-6">
